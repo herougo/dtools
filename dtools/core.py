@@ -1,5 +1,3 @@
-import pdb
-import os
 import sys
 import inspect
 import traceback
@@ -48,6 +46,9 @@ def ex(local_variables=None, pretty_print=True):
 
 
 ''' Not used
+import pdb
+import os
+
 def set_trace(local_variables=None, pretty_print=True):
     _maybe_print(local_variables, pretty_print)
     print('Press r to return from the dtools function call')
