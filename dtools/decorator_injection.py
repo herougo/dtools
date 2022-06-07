@@ -26,7 +26,7 @@ def async_decorator(f):
                 LOGGER.info('EXCEPTION in: ' + f.__name__ + ' - ' + str(f))
                 if sys.exc_info()[1] in _SEEN_EXCEPTIONS:
                     _SEEN_EXCEPTIONS.add(sys.exc_info()[1])
-                    LOGGER.info(traceback.print_tb(*sys.exc_info()))
+                    LOGGER.info(traceback.format_exc())
             raise ex
     return wrapper
 
@@ -44,7 +44,7 @@ def sync_decorator(f):
                 LOGGER.info('EXCEPTION in: ' + f.__name__ + ' - ' + str(f))
                 if sys.exc_info()[1] not in _SEEN_EXCEPTIONS:
                     _SEEN_EXCEPTIONS.add(sys.exc_info()[1])
-                    LOGGER.info(traceback.print_tb(*sys.exc_info()))
+                    LOGGER.info(traceback.format_exc())
             raise ex
     return wrapper
 
