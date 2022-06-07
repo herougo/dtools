@@ -1,5 +1,5 @@
 import argparse
-from dtools.decorator_injection import add_decorators_to_dir
+import dtools
 import time
 
 def main():
@@ -8,7 +8,7 @@ def main():
     parser.add_argument('dir_path', type=str)
     args = parser.parse_args()
 
-    add_decorators_to_dir(args.dir_path)
+    dtools.decorator_injection.add_decorators_to_dir(args.dir_path)
     print(f'Done after {time.time() - start_time}s!')
 
 
