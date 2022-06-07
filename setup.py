@@ -10,8 +10,8 @@ setup(
     packages=['dtools'],
     entry_points = {
         'console_scripts': [
-            'dtools-add=dtools.scripts.add_decorators:main',
-            'dtools-remove=dtools.scripts.remove_decorators:main'
+            'dtools-add=scripts.add_decorators:main',
+            'dtools-remove=scripts.remove_decorators:main'
         ]
     }
 )
