@@ -7,11 +7,11 @@ setup(
     author='',
     author_email='',
     url='',
-    packages=['dtools'],
+    packages=['dtools', 'dtools.scripts'],
     entry_points = {
         'console_scripts': [
-            'dtools-add=scripts.add_decorators:main',
-            'dtools-remove=scripts.remove_decorators:main'
+            'dtools-add=dtools.scripts.add_decorators:main',
+            'dtools-remove=dtools.scripts.remove_decorators:main'
         ]
     }
 )
