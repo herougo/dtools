@@ -57,5 +57,9 @@ class _Config:
     def logging_levels(self):
         return set(self._config_json[REPO_PATH][ConfigAttribute.LOGGING_LEVELS.value])
 
+    @property
+    def log_file_path(self):
+        return self._config_json[REPO_PATH][ConfigAttribute.LOG_FILE_PATH.value]
+
 
 CONFIG = _Config()
