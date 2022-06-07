@@ -11,7 +11,8 @@ setup(
     entry_points = {
         'console_scripts': [
             'dtools-add=dtools.scripts.add_decorators:main',
-            'dtools-remove=dtools.scripts.remove_decorators:main'
+            'dtools-remove=dtools.scripts.remove_decorators:main',
+            'dtools-set-logging-levels=dtools.scripts.set_logging_level:main'
         ]
     }
 )
