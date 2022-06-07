@@ -26,15 +26,12 @@ class _Config:
             else:
                 _check_logging_levels(self.logging_levels)
 
-    @staticmethod
-
     def add_repo_to_config(self):
         logging_levels = [LoggingLevel.EXCEPTION.value]
         self._config_json[REPO_PATH] = {
             ConfigAttribute.LOGGING_LEVELS.value: logging_levels
         }
         self.save()
-        self.LOGGING_LEVELS = set(logging_levels)
 
     def _create_new_config_json(self):
         logging_levels = [LoggingLevel.EXCEPTION.value]
