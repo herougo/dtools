@@ -8,3 +8,4 @@ class LoggingLevel(Enum):
 
 class ConfigAttribute(Enum):
     LOGGING_LEVELS = 'logging_levels'
+    LOG_FILE_PATH = 'log_file_path'

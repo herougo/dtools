@@ -12,6 +12,13 @@ def _check_logging_levels(logging_levels):
     if logging_levels - possible_values:
         raise ValueError(f'Invalid {ConfigAttribute.LOGGING_LEVELS.value} {logging_levels - possible_values}')
 
+def _create_new_config_entry():
+    logging_levels = [LoggingLevel.EXCEPTION.value]
+    return {
+        ConfigAttribute.LOGGING_LEVELS.value: logging_levels,
+        ConfigAttribute.LOG_FILE_PATH.value: 'log.txt'
+    }
+
 
 class _Config:
     def __init__(self):
@@ -27,18 +34,12 @@ class _Config:
                 _check_logging_levels(self.logging_levels)
 
     def add_repo_to_config(self):
-        logging_levels = [LoggingLevel.EXCEPTION.value]
-        self._config_json[REPO_PATH] = {
-            ConfigAttribute.LOGGING_LEVELS.value: logging_levels
-        }
+        self._config_json[REPO_PATH] = _create_new_config_entry()
         self.save()
 
     def _create_new_config_json(self):
-        logging_levels = [LoggingLevel.EXCEPTION.value]
         self._config_json = {
-            REPO_PATH: {
-                ConfigAttribute.LOGGING_LEVELS.value: logging_levels
-            }
+            REPO_PATH: _create_new_config_entry()
         }
         self.save()
 
