@@ -2,6 +2,7 @@ from enum import Enum
 
 class LoggingLevel(Enum):
     EXCEPTION = 'exception'
+    FUNCTION = 'function'
     ALL = 'all'
     NONE = 'none'
 

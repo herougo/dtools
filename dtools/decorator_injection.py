@@ -15,10 +15,10 @@ _SEEN_EXCEPTIONS = set()
 def async_decorator(f):
     async def wrapper(*args, **kwargs):
         try:
-            if meets_logging_level(LoggingLevel.ALL.value):
+            if meets_logging_level(LoggingLevel.FUNCTION.value):
                 LOGGER.info('START: ' + f.__name__ + ' - ' + str(f))
             result = await f(*args, **kwargs)
-            if meets_logging_level(LoggingLevel.ALL.value):
+            if meets_logging_level(LoggingLevel.FUNCTION.value):
                 LOGGER.info('END: ' + f.__name__ + ' - ' + str(f))
             return result
         except Exception as ex:
@@ -33,16 +33,16 @@ def async_decorator(f):
 def sync_decorator(f):
     def wrapper(*args, **kwargs):
         try:
-            if meets_logging_level(LoggingLevel.ALL.value):
+            if meets_logging_level(LoggingLevel.FUNCTION.value):
                 LOGGER.info('START: ' + f.__name__ + ' - ' + str(f))
             result = f(*args, **kwargs)
-            if meets_logging_level(LoggingLevel.ALL.value):
+            if meets_logging_level(LoggingLevel.FUNCTION.value):
                 LOGGER.info('END: ' + f.__name__ + ' - ' + str(f))
             return result
         except Exception as ex:
             if meets_logging_level(LoggingLevel.EXCEPTION.value):
                 LOGGER.info('EXCEPTION in: ' + f.__name__ + ' - ' + str(f))
-                if sys.exc_info()[1] in _SEEN_EXCEPTIONS:
+                if sys.exc_info()[1] not in _SEEN_EXCEPTIONS:
                     _SEEN_EXCEPTIONS.add(sys.exc_info()[1])
                     LOGGER.info(traceback.print_tb(*sys.exc_info()))
             raise ex
