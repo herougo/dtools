@@ -53,6 +53,7 @@ class _Config:
         logging_levels = set(logging_levels)
         _check_logging_levels(logging_levels)
         self._config_json[REPO_PATH][ConfigAttribute.LOGGING_LEVELS.value] = list(logging_levels)
+        self.save()
 
     @property
     def logging_levels(self):
