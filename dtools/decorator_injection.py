@@ -12,6 +12,20 @@ _FIRST_LINE = f'import dtools  # {_DELETE_ME}'
 
 _SEEN_EXCEPTIONS = set()
 
+def _get_full_exc_traceback():
+    # traceback.format_exc() is insufficient
+    # https://stackoverflow.com/questions/14527819/traceback-shows-up-until-decorator
+    exc_info = sys.exc_info()
+    stack = traceback.extract_stack()
+    tb = traceback.extract_tb(exc_info[2])
+    full_tb = stack[:-1] + tb
+    exc_line = traceback.format_exception_only(*exc_info[:2])
+    return '\n'.join([
+        "Traceback (most recent call last):",
+        "".join(traceback.format_list(full_tb)),
+        "".join(exc_line)
+    ])
+
 def async_decorator(f):
     async def wrapper(*args, **kwargs):
         try:
@@ -26,7 +40,7 @@ def async_decorator(f):
                 LOGGER.info('EXCEPTION in: ' + f.__name__ + ' - ' + str(f))
                 if sys.exc_info()[1] in _SEEN_EXCEPTIONS:
                     _SEEN_EXCEPTIONS.add(sys.exc_info()[1])
-                    LOGGER.info(traceback.format_exc())
+                    LOGGER.info(_get_full_exc_traceback())
             raise ex
     return wrapper
 
@@ -44,7 +58,7 @@ def sync_decorator(f):
                 LOGGER.info('EXCEPTION in: ' + f.__name__ + ' - ' + str(f))
                 if sys.exc_info()[1] not in _SEEN_EXCEPTIONS:
                     _SEEN_EXCEPTIONS.add(sys.exc_info()[1])
-                    LOGGER.info(traceback.format_exc())
+                    LOGGER.info(_get_full_exc_traceback())
             raise ex
     return wrapper
 
