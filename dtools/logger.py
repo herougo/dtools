@@ -1,5 +1,6 @@
 import logging
 import os
+from dtools.config import DTOOLS_DIR
 
 def create_info_logger(name, file_path):
     logger = logging.getLogger(name)
@@ -9,10 +10,10 @@ def create_info_logger(name, file_path):
     logger.addHandler(ch)
     return logger
 
-LOGGER_DIR = os.path.join(os.path.expanduser("~"), 'dtools')
-LOGGER_PATH = os.path.join(LOGGER_DIR, 'log.txt')
 
-if not os.path.exists(LOGGER_DIR):
-    os.makedirs(LOGGER_DIR)
+LOGGER_PATH = os.path.join(DTOOLS_DIR, 'log.txt')
+
+if not os.path.exists(DTOOLS_DIR):
+    os.makedirs(DTOOLS_DIR)
 
 LOGGER = create_info_logger('dtools', LOGGER_PATH)

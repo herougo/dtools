@@ -7,7 +7,7 @@ setup(
     author='',
     author_email='',
     url='',
-    packages=['dtools', 'dtools.scripts'],
+    packages=['dtools', 'dtools.scripts'],  # dtools.scripts added to avoid cirular dependency
     entry_points = {
         'console_scripts': [
             'dtools-add=dtools.scripts.add_decorators:main',
