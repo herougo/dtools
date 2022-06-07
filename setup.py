@@ -8,4 +8,10 @@ setup(
     author_email='',
     url='',
     packages=['dtools'],
+    entry_points = {
+        'console_scripts': [
+            'dtools-add=dtools.add_decorators:main',
+            'dtools-remove=dtools.remove_decorators:main'
+        ]
+    }
 )
