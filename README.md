@@ -22,7 +22,7 @@ def my_func(*args, **kwargs):
 ```
 When you run the above code, the exception will be logged if you have your logging level set properly (default is 'exception', where only newly-seen exceptions are logged).
 
-You can inject these decorators into your repo with a script.
+You can inject these decorators into all functions in your repo with a script.
 ```bash
 dtools-add /path/to/repo
 dtools-remove /path/to/repo
